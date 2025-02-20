@@ -1,5 +1,14 @@
+import Header from "../Common/Header";
+
 const UserLayout = () => {
-  return <div>UserLayout</div>;
+  return (
+    <div>
+      {/* Header */}
+      <Header />
+      {/* Content */}
+      {/* Footer */}
+    </div>
+  );
 };
 
 export default UserLayout;
