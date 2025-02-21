@@ -1,12 +1,14 @@
 import Header from "../Common/Header";
+import Footer from "../Common/Footer";
 
 const UserLayout = () => {
   return (
     <div>
       {/* Header */}
       <Header />
-      {/* Content */}
+      {/* Main Content */}
       {/* Footer */}
+      <Footer />
     </div>
   );
 };
