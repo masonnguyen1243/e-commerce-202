@@ -81,7 +81,9 @@ const CollectionPage = () => {
     //Add event listener for clicks
     document.addEventListener("mousedown", handleClickOutside);
     //Clean event listener
-    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.addEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   return (
