@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
+// Users
 import UserLayout from "./components/Layout/UserLayout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -11,7 +12,9 @@ import Checkout from "./components/Cart/Checkout";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 import OrderDetailPage from "./pages/OrderDetailPage";
 import MyOrdersPage from "./pages/MyOrdersPage";
+// Admin
 import AdminLayout from "./components/Admin/AdminLayout";
+import AdminHomePage from "./pages/AdminHomePage";
 
 const App = () => {
   return (
@@ -36,6 +39,7 @@ const App = () => {
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
           {/* Admin layout */}
+          <Route index element={<AdminHomePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
