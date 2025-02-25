@@ -10,11 +10,13 @@ import CollectionPage from "./pages/CollectionPage";
 import ProductDetails from "./components/Products/ProductDetails";
 import Checkout from "./components/Cart/Checkout";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
+import OrderDetailPage from "./pages/OrderDetailPage";
+import MyOrdersPage from "./pages/MyOrdersPage";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Toaster position="bottom-left" />
+      <Toaster position="top-right" />
       <Routes>
         <Route path="/" element={<UserLayout />}>
           {/* User layout */}
@@ -29,6 +31,8 @@ const App = () => {
             path="/order-confirmation"
             element={<OrderConfirmationPage />}
           />
+          <Route path="/order/:id" element={<OrderDetailPage />} />
+          <Route path="/my-orders" element={<MyOrdersPage />} />
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
           {/* Admin layout */}

@@ -76,7 +76,7 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     if (!selectedSize || !selectedColor) {
       toast.error("Please select size and color before add to cart.", {
-        duration: 1000,
+        duration: 3000,
       });
       return;
     }
