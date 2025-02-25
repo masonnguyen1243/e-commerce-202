@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
 import UserLayout from "./components/Layout/UserLayout";
-import AdminLayout from "./components/Layout/AdminLayout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -12,6 +11,7 @@ import Checkout from "./components/Cart/Checkout";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 import OrderDetailPage from "./pages/OrderDetailPage";
 import MyOrdersPage from "./pages/MyOrdersPage";
+import AdminLayout from "./components/Admin/AdminLayout";
 
 const App = () => {
   return (
