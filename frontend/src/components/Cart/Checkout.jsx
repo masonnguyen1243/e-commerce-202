@@ -182,7 +182,6 @@ const Checkout = () => {
               </button>
             ) : (
               <div>
-                <h3 className="mb-4 text-lg">Pay with Paypal</h3>
                 {/* Paypal Component */}
                 <PayPalButton
                   amount={100}
