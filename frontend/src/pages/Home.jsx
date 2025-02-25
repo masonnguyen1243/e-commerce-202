@@ -11,25 +11,25 @@ const placeholderProducts = [
     _id: 5,
     name: "Product 5",
     price: 100,
-    images: [{ url: "https://picsum.photos/500/500?random=7" }],
+    images: [{ url: "https://picsum.photos/700/700?random=7" }],
   },
   {
     _id: 6,
     name: "Product 6",
     price: 100,
-    images: [{ url: "https://picsum.photos/500/500?random=8" }],
+    images: [{ url: "https://picsum.photos/700/700?random=8" }],
   },
   {
     _id: 7,
     name: "Product 7",
     price: 100,
-    images: [{ url: "https://picsum.photos/500/500?random=9" }],
+    images: [{ url: "https://picsum.photos/700/700?random=9" }],
   },
   {
     _id: 8,
     name: "Product 8",
     price: 100,
-    images: [{ url: "https://picsum.photos/500/500?random=10" }],
+    images: [{ url: "https://picsum.photos/700/700?random=10" }],
   },
 ];
 

@@ -13,11 +13,11 @@ const selectedProduct = {
   colors: ["Red", "Black"],
   images: [
     {
-      url: "https://picsum.photos/500/500?random=1",
+      url: "https://picsum.photos/700/700?random=1",
       altText: "Stylish Jacket 1",
     },
     {
-      url: "https://picsum.photos/500/500?random=2",
+      url: "https://picsum.photos/700/700?random=2",
       altText: "Stylish Jacket 2",
     },
   ],
@@ -28,25 +28,25 @@ const similarProducts = [
     _id: 1,
     name: "Product 1",
     price: 100,
-    images: [{ url: "https://picsum.photos/500/500?random=3" }],
+    images: [{ url: "https://picsum.photos/700/700?random=3" }],
   },
   {
     _id: 2,
     name: "Product 2",
     price: 100,
-    images: [{ url: "https://picsum.photos/500/500?random=4" }],
+    images: [{ url: "https://picsum.photos/700/700?random=4" }],
   },
   {
     _id: 3,
     name: "Product 3",
     price: 100,
-    images: [{ url: "https://picsum.photos/500/500?random=5" }],
+    images: [{ url: "https://picsum.photos/700/700?random=5" }],
   },
   {
     _id: 4,
     name: "Product 4",
     price: 100,
-    images: [{ url: "https://picsum.photos/500/500?random=6" }],
+    images: [{ url: "https://picsum.photos/700/700?random=6" }],
   },
 ];
 
