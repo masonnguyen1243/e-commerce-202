@@ -253,6 +253,35 @@ const getSimilarProduct = async (req, res) => {
   }
 };
 
+//BEST SELLER
+const getBestSellerProduct = async (req, res) => {
+  try {
+    const bestSeller = await Product.findOne().sort({ rating: -1 });
+    if (bestSeller) {
+      res.json(bestSeller);
+    } else {
+      res.status(404).json({ message: "No best seller found" });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+//NEW ARRIVALS
+const getNewArrivals = async (req, res) => {
+  try {
+    //Fetch latest 8 products
+    const newArrivals = await Product.find().sort({ createdAt: -1 }).limit(8);
+    if (newArrivals) {
+      res.json(newArrivals);
+    } else {
+      res.status(404).json({ message: "No new arrivals found" });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   createProduct,
   updateProduct,
@@ -260,4 +289,6 @@ module.exports = {
   getProducts,
   getProduct,
   getSimilarProduct,
+  getBestSellerProduct,
+  getNewArrivals,
 };

@@ -24,6 +24,16 @@ router.delete("/:id", protect, admin, ctrls.deleteProduct);
 // @access Public
 router.get("/", ctrls.getProducts);
 
+// @route GET /api/products/new-arrivals
+// @desc Retrieve latest 8 products - Created date
+// @access Public
+router.get("/new-arrivals", ctrls.getNewArrivals);
+
+// @route GET /api/products/best-seller
+// @desc Retrieve the products with highest rating
+// @access Public
+router.get("/best-seller", ctrls.getBestSellerProduct);
+
 // @route GET /api/products/:id
 // @desc GET a single Product by ID
 // @access Public
