@@ -120,7 +120,10 @@ const UserManagement = () => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr key={user._id} className="border-b hover:bg-gray-50">
+              <tr
+                key={user._id}
+                className="cursor-pointer border-b hover:bg-gray-50"
+              >
                 <td className="whitespace-nowrap p-4 font-medium text-gray-900">
                   {user.name}
                 </td>
