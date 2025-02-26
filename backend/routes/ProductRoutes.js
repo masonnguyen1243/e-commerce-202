@@ -19,4 +19,9 @@ router.put("/:id", protect, admin, ctrls.updateProduct);
 // @access Private
 router.delete("/:id", protect, admin, ctrls.deleteProduct);
 
+// @route GET /api/products
+// @desc GET all existing products with optional query filters
+// @access Public
+router.get("/", ctrls.getProducts);
+
 module.exports = router;
