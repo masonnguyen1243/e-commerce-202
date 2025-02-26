@@ -217,4 +217,47 @@ const getProducts = async (req, res) => {
   }
 };
 
-module.exports = { createProduct, updateProduct, deleteProduct, getProducts };
+//GET AN PRODUCT
+const getProduct = async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+//SIMILAR PRODUCT
+const getSimilarProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    const similarProducts = await Product.find({
+      _id: { $ne: id }, //exclude the current id
+      gender: product.gender,
+      category: product.category,
+    }).limit(4);
+
+    res.json(similarProducts);
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+module.exports = {
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getProducts,
+  getProduct,
+  getSimilarProduct,
+};

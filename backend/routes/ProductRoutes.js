@@ -24,4 +24,14 @@ router.delete("/:id", protect, admin, ctrls.deleteProduct);
 // @access Public
 router.get("/", ctrls.getProducts);
 
+// @route GET /api/products/:id
+// @desc GET a single Product by ID
+// @access Public
+router.get("/:id", ctrls.getProduct);
+
+// @route GET /api/products/similar/:id
+// @desc Retrieve similar products based on the current product's gender and category
+// @access Public
+router.get("/similar/:id", ctrls.getSimilarProduct);
+
 module.exports = router;
