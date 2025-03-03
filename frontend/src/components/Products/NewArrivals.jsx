@@ -27,8 +27,6 @@ const NewArrivals = () => {
     fetchNewArrivals();
   }, []);
 
-  console.log(newArrivals);
-
   const scroll = (direction) => {
     const scrollAmount = direction === "left" ? -300 : 300;
     scrollRef.current.scrollBy({ left: scrollAmount, behaviour: "smooth" });
@@ -62,7 +60,7 @@ const NewArrivals = () => {
       updateScrollButtons();
       return () => container.removeEventListener("scroll", updateScrollButtons);
     }
-  }, []);
+  }, [newArrivals]);
 
   const handleMouseDown = (e) => {
     setIsDragging(true);
@@ -124,7 +122,7 @@ const NewArrivals = () => {
             <img
               src={product.images[0]?.url}
               alt={product.images[0]?.altText || product.name}
-              className="h-[500px] w-full rounded-lg object-cover"
+              className="h-[600px] w-full rounded-lg object-cover"
               draggable="false"
             />
             <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-opacity-50 p-4 text-white backdrop-blur-md">
