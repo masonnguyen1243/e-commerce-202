@@ -52,7 +52,7 @@ export const fetchProductDetails = createAsyncThunk(
   },
 );
 
-//Async thunk to fetch update products
+//Async thunk to update products
 export const updateProduct = createAsyncThunk(
   "products/updateProduct",
   async ({ id, productData }) => {
