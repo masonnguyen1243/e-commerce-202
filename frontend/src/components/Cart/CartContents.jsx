@@ -1,30 +1,45 @@
 import { RiDeleteBin3Line } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import {
+  removeFromCart,
+  updateCartItemQuantity,
+} from "../../redux/slice/cartSlice";
 
-const CartContents = () => {
-  const cartProducts = [
-    {
-      productsId: 1,
-      name: "T-Shirt",
-      size: "M",
-      color: "Red",
-      quantity: 1,
-      price: 15,
-      image: "https://picsum.photos/200/300?random=1",
-    },
-    {
-      productsId: 2,
-      name: "Jeans",
-      size: "L",
-      color: "Blue",
-      quantity: 1,
-      price: 25,
-      image: "https://picsum.photos/200/300?random=2",
-    },
-  ];
+const CartContents = ({ cart, userId, guestId }) => {
+  const dispatch = useDispatch();
+
+  //Handle adding or substracting to cart
+  const handleAddToCart = (productId, delta, quantity, size, color) => {
+    const newQuantity = quantity + delta;
+    if (newQuantity >= 1) {
+      dispatch(
+        updateCartItemQuantity({
+          productId,
+          quantity: newQuantity,
+          guestId,
+          userId,
+          size,
+          color,
+        }),
+      );
+    }
+  };
+
+  const handleRemoveFromCart = (productId, size, color) => {
+    dispatch(
+      removeFromCart({
+        productId,
+        guestId,
+        userId,
+        size,
+        color,
+      }),
+    );
+  };
 
   return (
     <div>
-      {cartProducts.map((product, index) => (
+      {cart.products.map((product, index) => (
         <div
           key={index}
           className="flex items-start justify-between border-b py-4"
@@ -41,11 +56,33 @@ const CartContents = () => {
                 size: {product.size} | color: {product.color}
               </p>
               <div className="mt-2 flex items-center">
-                <button className="rounded border px-2 py-1 text-xl font-medium">
+                <button
+                  onClick={() =>
+                    handleAddToCart(
+                      product.productId,
+                      -1,
+                      product.quantity,
+                      product.size,
+                      product.color,
+                    )
+                  }
+                  className="rounded border px-2 py-1 text-xl font-medium"
+                >
                   -
                 </button>
                 <span className="mx-4">{product.quantity}</span>
-                <button className="rounded border px-2 py-1 text-xl font-medium">
+                <button
+                  onClick={() =>
+                    handleAddToCart(
+                      product.productId,
+                      1,
+                      product.quantity,
+                      product.size,
+                      product.color,
+                    )
+                  }
+                  className="rounded border px-2 py-1 text-xl font-medium"
+                >
                   +
                 </button>
               </div>
@@ -53,7 +90,15 @@ const CartContents = () => {
           </div>
           <div>
             <p>$ {product.price.toLocaleString()}</p>
-            <button>
+            <button
+              onClick={() =>
+                handleRemoveFromCart(
+                  product.productId,
+                  product.size,
+                  product.color,
+                )
+              }
+            >
               <RiDeleteBin3Line className="mt-2 h-6 w-6 text-red-600" />
             </button>
           </div>
