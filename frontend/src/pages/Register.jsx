@@ -4,6 +4,7 @@ import register from "../assets/register.webp";
 import { registerUser } from "../redux/slice/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
+import { mergeCart } from "../redux/slice/cartSlice";
 
 const Register = () => {
   const [email, setEmail] = useState("");
