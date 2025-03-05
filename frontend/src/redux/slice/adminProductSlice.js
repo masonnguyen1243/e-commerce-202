@@ -66,7 +66,7 @@ export const deleteProduct = createAsyncThunk(
       },
     );
 
-    return response.data;
+    return id;
   },
 );
 

@@ -1,43 +1,67 @@
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchAdminProducts } from "../redux/slice/adminProductSlice";
+import { fetchAllOrders } from "../redux/slice/adminOrderSlice";
 
 const AdminHomePage = () => {
-  const orders = [
-    {
-      _id: 123123,
-      user: {
-        name: "John Doe",
-      },
-      totalPrice: 110,
-      status: "Processing",
-    },
-  ];
+  const dispatch = useDispatch();
+  const {
+    products,
+    loading: productsLoading,
+    error: productsError,
+  } = useSelector((state) => state.adminProducts);
+
+  const {
+    orders,
+    totalOrders,
+    totalSales,
+    loading: orderLoading,
+    error: orderError,
+  } = useSelector((state) => state.adminOrders);
+
+  useEffect(() => {
+    dispatch(fetchAdminProducts());
+    dispatch(fetchAllOrders());
+  }, [dispatch]);
 
   return (
     <div className="mx-auto max-w-7xl p-6">
       <h1 className="mb-6 text-3xl font-bold">Admin Dashboard</h1>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <div className="rounded-lg p-4 shadow-md">
-          <h2 className="text-xl font-semibold">Revenue</h2>
-          <p className="text-2xl">$10000</p>
+      {productsLoading || orderLoading ? (
+        <p>Loading ...</p>
+      ) : productsError ? (
+        <p className="text-red-500">Error fetching products: {productsError}</p>
+      ) : orderError ? (
+        <p className="text-red-500">Error fetching orders: {orderError}</p>
+      ) : (
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-lg p-4 shadow-md">
+            <h2 className="text-xl font-semibold">Revenue</h2>
+            <p className="text-2xl">${totalSales.toFixed(2)}</p>
+          </div>
+          <div className="rounded-lg p-4 shadow-md">
+            <h2 className="text-xl font-semibold">Total Order</h2>
+            <p className="text-2xl">{totalOrders}</p>
+            <Link
+              to={"/admin/orders"}
+              className="text-blue-500 hover:underline"
+            >
+              Manage Orders
+            </Link>
+          </div>
+          <div className="rounded-lg p-4 shadow-md">
+            <h2 className="text-xl font-semibold">Total Products</h2>
+            <p className="text-2xl">{products.length}</p>
+            <Link
+              to={"/admin/products"}
+              className="text-blue-500 hover:underline"
+            >
+              Manage Products
+            </Link>
+          </div>
         </div>
-        <div className="rounded-lg p-4 shadow-md">
-          <h2 className="text-xl font-semibold">Total Order</h2>
-          <p className="text-2xl">200</p>
-          <Link to={"/admin/orders"} className="text-blue-500 hover:underline">
-            Manage Orders
-          </Link>
-        </div>
-        <div className="rounded-lg p-4 shadow-md">
-          <h2 className="text-xl font-semibold">Total Products</h2>
-          <p className="text-2xl">100</p>
-          <Link
-            to={"/admin/products"}
-            className="text-blue-500 hover:underline"
-          >
-            Manage Products
-          </Link>
-        </div>
-      </div>
+      )}
 
       <div className="mt-6">
         <h2 className="mb-4 text-2xl font-bold">Recent Orders</h2>
@@ -60,7 +84,7 @@ const AdminHomePage = () => {
                   >
                     <td className="p-4">{order._id}</td>
                     <td className="p-4">{order.user.name}</td>
-                    <td className="p-4">{order.totalPrice}</td>
+                    <td className="p-4">${order.totalPrice.toFixed(2)}</td>
                     <td className="p-4">{order.status}</td>
                   </tr>
                 ))
