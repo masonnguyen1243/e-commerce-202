@@ -1,34 +1,23 @@
-const checkout = {
-  _id: "123123",
-  createdAt: new Date(),
-  checkoutItem: [
-    {
-      productId: "1",
-      name: "Jacket",
-      color: "Black",
-      size: "M",
-      price: 150,
-      quantity: 1,
-      image: "https://picsum.photos/150?random=1",
-    },
-    {
-      productId: "2",
-      name: "T-Shirt",
-      color: "Black",
-      size: "M",
-      price: 120,
-      quantity: 1,
-      image: "https://picsum.photos/150?random=2",
-    },
-  ],
-  shippingAddress: {
-    address: "123 Fashion Street",
-    city: "New York",
-    country: "USA",
-  },
-};
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearCart } from "../redux/slice/cartSlice";
 
 const OrderConfirmationPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { checkout } = useSelector((state) => state.checkout);
+
+  //Clear the cart when order is confirmed
+  useEffect(() => {
+    if (checkout && checkout._id) {
+      dispatch(clearCart());
+      localStorage.removeItem("cart");
+    } else {
+      navigate("/my-orders");
+    }
+  }, [checkout, dispatch, navigate]);
+
   const calculateEstimatedDelivery = (createdAt) => {
     const orderDate = new Date(createdAt);
     orderDate.setDate(orderDate.getDate() + 10); //add 10 days to order date
@@ -64,7 +53,7 @@ const OrderConfirmationPage = () => {
 
           {/* Ordered Items */}
           <div className="mb-20">
-            {checkout.checkoutItem.map((item) => (
+            {checkout.checkoutItems.map((item) => (
               <div key={item.productId} className="mb-4 flex items-center">
                 <img
                   src={item.image}
@@ -78,7 +67,7 @@ const OrderConfirmationPage = () => {
                   </p>
                 </div>
                 <div className="ml-auto text-right">
-                  <p className="text-lg">{item.price}</p>
+                  <p className="text-lg">${item.price}</p>
                   <p className="text-sm text-gray-500">
                     Quantity: {item.quantity}
                   </p>
