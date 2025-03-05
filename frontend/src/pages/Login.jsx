@@ -11,7 +11,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, guestId } = useSelector((state) => state.auth);
+  const { user, guestId, loading } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state.cart);
 
   //Get redirect parameter and check if it's checkout or something
@@ -77,10 +77,10 @@ const Login = () => {
             type=""
             className="w-full rounded-lg bg-black p-2 font-semibold text-white transition hover:bg-gray-800"
           >
-            Sign in
+            {loading ? "Loading ..." : "Sign in"}
           </button>
           <p className="mt-6 text-center text-sm">
-            Don't have an account?
+            Don&apos;t have an account?
             <Link
               to={`/register?redirect=${encodeURIComponent(redirect)}`}
               className="pl-1 text-blue-500 underline"

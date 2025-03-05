@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { clearCart } from "../redux/slice/cartSlice";
@@ -7,6 +7,10 @@ const OrderConfirmationPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { checkout } = useSelector((state) => state.checkout);
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
 
   //Clear the cart when order is confirmed
   useEffect(() => {

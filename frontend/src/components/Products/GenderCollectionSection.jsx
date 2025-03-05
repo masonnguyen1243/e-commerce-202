@@ -15,10 +15,10 @@ const GenderCollectionSection = () => {
           />
           <div className="absolute bottom-8 left-8 bg-white bg-opacity-90 p-4">
             <h2 className="mb-3 text-2xl font-bold text-gray-900">
-              Women's Collection
+              Women&apos;s Collection
             </h2>
             <Link
-              to={"/colections/all?gender=Women"}
+              to={"/collections/all?gender=Women"}
               className="text-gray-900 underline"
             >
               Shop now
@@ -35,10 +35,10 @@ const GenderCollectionSection = () => {
           />
           <div className="absolute bottom-8 left-8 bg-white bg-opacity-90 p-4">
             <h2 className="mb-3 text-2xl font-bold text-gray-900">
-              Men's Collection
+              Men&apos;s Collection
             </h2>
             <Link
-              to={"/colections/all?gender=Men"}
+              to={"/collections/all?gender=Men"}
               className="text-gray-900 underline"
             >
               Shop now
